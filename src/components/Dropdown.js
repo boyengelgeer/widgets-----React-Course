@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const Dropdown = ({ label, options, selected, onSelectedChange }) => {
+const Dropdown = ({ label, options = [], selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef();
 
@@ -21,7 +21,7 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
   }, []);
 
   const renderedOptions = options.map((option) => {
-    if (option.value === selected.value) {
+    if (option.value === selected?.value) {
       return null;
     }
     return (
@@ -43,7 +43,7 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
           className={`ui selection dropdown ${open ? "visible active" : " "}`}
         >
           <i className="dropdown icon"></i>
-          <div className="text">{selected.label}</div>
+          <div className="text">{selected?.label ?? "select an option"}</div>
           <div className={`menu ${open ? "visible transition" : ""}`}>
             {renderedOptions}
           </div>
